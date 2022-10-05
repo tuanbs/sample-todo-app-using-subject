@@ -1,27 +1,9 @@
-# BehaviorSubjectTodoApp
+# What is this?
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
+This is a sample demo todo app using `BehaviorSubject` as a simple approach to handle the state management in Angular. This follows the tutorial [Why you *should* use NgRx if you're learning Angular](https://www.youtube.com/watch?v=B3KJvoyQUdE).
 
-## Development server
+**NOTE:** This app is created to show the Angular dev how we go from `BehaviorSubject` approach into `NgRx` approach to handle the state management in Angular. So this app will be refactored using `NgRx` lib to handle the state management instead of `BehaviorSubject.`. For the app that uses `NgRx` lib, please check out [I bet you can understand NgRx after watching this video](https://www.youtube.com/watch?v=kx0VTgTtSBg).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# How to make this app up and running?
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Clone this app with git command. -> Then open the app's root and run `npm install` to install the npm packages. -> Then run `npm run start` or `ng serve` to trigger the app. -> Then open your browser to with address `localhost:4200`.

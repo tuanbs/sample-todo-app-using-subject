@@ -1,3 +1,4 @@
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'behavior-subject-todo-app';
+
+  constructor(
+    private _overlayContainer: OverlayContainer,
+  ) {
+    this._overlayContainer.getContainerElement().classList.add('dark-theme');
+  }
 }

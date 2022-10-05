@@ -1,1 +1,26 @@
-<p>todo works!</p>
+<div class="row">
+  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <mat-card class="my-3">
+      <mat-card-title>Sample ToDo app using BehaviorSubject</mat-card-title>
+      <mat-card-subtitle>Input todo and press ADD TODO button</mat-card-subtitle>
+      
+      <mat-card-content>
+        <form #todosForm="ngForm" class="d-flex flex-column" novalidate>
+          <mat-form-field appearance="outline">
+            <mat-label>Input todo</mat-label>
+            <input required matInput type="text" placeholder="Input your todo" [(ngModel)]="todo" name="todo">
+          </mat-form-field>
+
+          <button [disabled]="!todosForm.valid" mat-raised-button color="primary" class="text-uppercase" (click)="addTodo()" cdkFocusInitial>Add ToDo</button>
+
+          <mat-selection-list [multiple]="false">
+            <mat-list-option *ngFor="let todo of allTodos$ | async">
+              <mat-icon mat-list-icon (click)="removeTodo(todo)">delete</mat-icon>
+              {{todo.content}}
+            </mat-list-option>
+          </mat-selection-list>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
