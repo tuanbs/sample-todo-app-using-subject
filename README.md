@@ -7,3 +7,5 @@ This is a sample demo todo app using `BehaviorSubject` as a simple approach to h
 # How to make this app up and running?
 
 Clone this app with git command. -> Then open the app's root and run `npm install` to install the npm packages. -> Then run `npm run start` or `ng serve` to trigger the app. -> Then open your browser to with address `localhost:4200`.
+
+<img src="demo.png" alt="todo-app"/>
