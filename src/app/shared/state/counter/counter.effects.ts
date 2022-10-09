@@ -7,11 +7,9 @@ import { decrementCounterAction, incrementCounterAction, loadCounterAction, load
 import { catchError, from, map, of, switchMap, withLatestFrom } from 'rxjs';
 import { counterSelector } from './counter.selectors';
 
-@Injectable(
-  // {
-  //   providedIn: 'root'
-  // }
-)
+@Injectable({
+  providedIn: 'root'
+})
 export class CounterEffects {
 
   constructor(

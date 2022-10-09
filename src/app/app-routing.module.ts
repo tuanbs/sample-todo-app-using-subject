@@ -3,6 +3,10 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'sample',
+    loadChildren: () => import('./components/sample/sample.module').then((m) => m.SampleModule),
+  },
+  {
     path: 'todo',
     loadChildren: () => import('./components/todo/todo.module').then((m) => m.TodoModule),
   },
@@ -11,8 +15,12 @@ const routes: Routes = [
     loadChildren: () => import('./components/my-counter/my-counter.module').then((m) => m.MyCounterModule),
   },
   {
+    path: 'my-todo',
+    loadChildren: () => import('./components/my-todo/my-todo.module').then((m) => m.MyTodoModule),
+  },
+  {
     path: '',
-    redirectTo: 'my-counter',
+    redirectTo: 'my-todo',
     pathMatch: 'full',
   },
 ];
