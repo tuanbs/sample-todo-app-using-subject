@@ -1,0 +1,8 @@
+<mat-card>
+  <mat-card-title>Counter is: {{ counter$ | async }}</mat-card-title>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onIncrement()">Increment</button>
+    <button mat-raised-button color="accent" (click)="onDecrement()">Decrement</button>
+    <button mat-raised-button color="warn" (click)="onReset()">Reset</button>
+  </mat-card-actions>
+</mat-card>

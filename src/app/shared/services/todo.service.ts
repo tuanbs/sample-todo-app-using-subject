@@ -14,13 +14,13 @@ export class TodoService {
   constructor() { }
 
   async loadTodos() {
-    const todos: Todo[] = localStorage.getItem(AppConstants.localDbName) == null ? [] : JSON.parse(localStorage.getItem(AppConstants.localDbName)!);
+    const todos: Todo[] = localStorage.getItem(AppConstants.localTodosDbName) == null ? [] : JSON.parse(localStorage.getItem(AppConstants.localTodosDbName)!);
     
     this._todos$.next(todos);
   }
 
   async saveTodos() {
-    return localStorage?.setItem(AppConstants.localDbName, JSON.stringify(this._todos$.value));
+    return localStorage?.setItem(AppConstants.localTodosDbName, JSON.stringify(this._todos$.value));
   }
 
   getTodos(): Observable<Todo[]> {
