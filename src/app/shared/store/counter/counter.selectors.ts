@@ -1,5 +1,5 @@
 import { createSelector } from "@ngrx/store";
-import { AppState } from "../app.state";
+import { AppState } from "..";
 import { CounterState } from "./counter.reducer";
 
 const _counterState = (appState: AppState) => appState.counterState;

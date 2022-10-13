@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map, Observable, tap } from 'rxjs';
-import { AppState } from 'src/app/shared/state/app.state';
-import { decrementCounterAction, incrementCounterAction, loadCounterAction, resetCounterAction } from 'src/app/shared/state/counter/counter.actions';
-import { CounterState } from 'src/app/shared/state/counter/counter.reducer';
-import { counterErrorSelector, counterSelector } from 'src/app/shared/state/counter/counter.selectors';
+import { AppState } from 'src/app/shared/store';
+import { decrementCounterAction, incrementCounterAction, loadCounterAction, resetCounterAction } from 'src/app/shared/store/counter/counter.actions';
+import { CounterState } from 'src/app/shared/store/counter/counter.reducer';
+import { counterErrorSelector, counterSelector } from 'src/app/shared/store/counter/counter.selectors';
 
 @Component({
   selector: 'app-my-counter',

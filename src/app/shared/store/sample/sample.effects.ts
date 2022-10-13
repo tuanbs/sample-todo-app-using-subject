@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { SampleService } from 'src/app/shared/services/sample.service';
-import { AppState } from 'src/app/shared/state/app.state';
+import { AppState } from 'src/app/shared/store';
 import { loadSampleAction, loadSampleFailureAction, loadSampleSuccessAction, sampleAction } from './sample.actions';
 import { catchError, from, map, of, switchMap, withLatestFrom } from 'rxjs';
 import { sampleSelector } from './sample.selectors';

@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CounterService } from '../../services/counter.service';
-import { AppState } from '../app.state';
+import { AppState } from '..';
 import { decrementCounterAction, incrementCounterAction, loadCounterAction, loadCounterFailureAction, loadCounterSuccessAction, resetCounterAction } from './counter.actions';
 import { catchError, from, map, of, switchMap, withLatestFrom } from 'rxjs';
 import { counterSelector } from './counter.selectors';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  // {
+  //   providedIn: 'root'
+  // }
+)
 export class CounterEffects {
 
   constructor(
