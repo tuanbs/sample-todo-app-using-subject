@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { map, Observable, tap } from 'rxjs';
 import { AppState } from 'src/app/shared/state/app.state';
 import { decrementCounterAction, incrementCounterAction, loadCounterAction, resetCounterAction } from 'src/app/shared/state/counter/counter.actions';
 import { CounterState } from 'src/app/shared/state/counter/counter.reducer';
-import { counterSelector } from 'src/app/shared/state/counter/counter.selectors';
+import { counterErrorSelector, counterSelector } from 'src/app/shared/state/counter/counter.selectors';
 
 @Component({
   selector: 'app-my-counter',
@@ -16,6 +16,13 @@ export class MyCounterComponent implements OnInit {
 
   constructor(private _store: Store<AppState>) {
     this.counter$ = this._store?.select(counterSelector);
+
+    this._store.pipe(
+      select(counterErrorSelector),
+      tap((error) => {
+        console.info(`error is: ${error}`);
+      }),
+    );
   }
 
   ngOnInit(): void {

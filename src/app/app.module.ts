@@ -28,8 +28,8 @@ import { SampleEffects } from 'src/app/shared/state/sample/sample.effects';
     StoreModule.forRoot({[AppConstants.counterStateKeyName]: counterReducer}),
     EffectsModule.forRoot([CounterEffects]),
     
-    StoreModule.forRoot({[AppConstants.sampleStateKeyName]: sampleReducer}),
-    EffectsModule.forRoot([SampleEffects]),
+    // StoreModule.forRoot({[AppConstants.sampleStateKeyName]: sampleReducer}),
+    // EffectsModule.forRoot([SampleEffects]),
 
     SharedModule,
   ],

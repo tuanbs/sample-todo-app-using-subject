@@ -23,8 +23,14 @@ export class CounterEffects {
       ofType(loadCounterAction),
       switchMap(() => 
         from(this._counterService.loadCounter()).pipe(
-          map((res) => loadCounterSuccessAction({ counter: res })),
-          catchError((error) => of(loadCounterFailureAction({ error: error }))),
+          map((res) => {
+            console.info(`loadCounterSuccessAction is calling. res is: ${res}`);
+            return loadCounterSuccessAction({ counter: res });
+          }),
+          catchError((error) => {
+            console.info(`loadCounterFailureAction is calling. error is: ${error}`);
+            return of(loadCounterFailureAction({ error: error }))
+          }),
         ),
       ),
     )

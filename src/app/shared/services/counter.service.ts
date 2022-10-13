@@ -13,6 +13,7 @@ export class CounterService {
     return new Observable((observer) => {
       const counterString = localStorage.getItem(AppConstants.localCounterDbName);
       const counter: number = counterString == null ? 0 : JSON.parse(counterString);
+      // observer.error(`Cannot load the local counter.`);
       observer.next(counter);
     });
   }

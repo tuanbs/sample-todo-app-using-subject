@@ -7,3 +7,7 @@ export const counterSelector = createSelector(
   _counterState,
   (counterState: CounterState) => counterState?.counter,
 );
+export const counterErrorSelector = createSelector(
+  _counterState,
+  (counterState: CounterState) => counterState?.error,
+);
