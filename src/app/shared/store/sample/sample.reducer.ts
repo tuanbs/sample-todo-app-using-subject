@@ -1,14 +1,15 @@
 import { createReducer, on } from "@ngrx/store";
+import { Sample } from "../../models/sample.model";
 import { loadSampleListAction, loadSampleListFailureAction, loadSampleListSuccessAction, createSampleAction } from "./sample.actions";
 
 export interface SampleState {
-  sample: number;
+  sampleList: Sample[];
   status: `pending` | `loading` | `error` | `success`;
   error: string | null;
 }
 
 const _initialState: SampleState = {
-  sample: 0,
+  sampleList: [],
   status: `pending`,
   error: null,
 };
@@ -19,20 +20,20 @@ export const sampleReducer = createReducer(
     ...state,
     status: `loading`,
   })),
-  on(loadSampleListSuccessAction, (state, { sample }) => ({
+  on(loadSampleListSuccessAction, (state, { sampleList: sampleList }) => ({
     ...state,
     status: `success`,
     error: null,
-    sample: sample,
+    sampleList: sampleList,
   })),
-  on(loadSampleListFailureAction, (state, { error }) => ({
+  on(loadSampleListFailureAction, (state, { error: error }) => ({
     ...state,
     status: `error`,
     error: error,
   })),
 
-  on(createSampleAction, (state) => ({
+  on(createSampleAction, (state, { content: content }) => ({
     ...state,
-    sample: state.sample + 1,
+    sampleList: [...state.sampleList, { id: Date.now().toString(), content: content }],
   })),
 );

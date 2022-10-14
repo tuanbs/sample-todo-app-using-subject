@@ -20,13 +20,13 @@ export const counterReducer = createReducer(
     status: `loading`,
     // counter: state.counter,
   })),
-  on(loadCounterSuccessAction, (state, { counter }) => ({
+  on(loadCounterSuccessAction, (state, { counter: counter }) => ({
     ...state,
     status: `success`,
     error: null,
     counter: counter,
   })),
-  on(loadCounterFailureAction, (state, { error }) => ({
+  on(loadCounterFailureAction, (state, { error: error }) => ({
     ...state,
     status: `error`,
     error: error,

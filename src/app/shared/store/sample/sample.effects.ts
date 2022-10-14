@@ -5,7 +5,7 @@ import { SampleService } from 'src/app/shared/services/sample.service';
 import { AppState } from 'src/app/shared/store';
 import { loadSampleListAction, loadSampleListFailureAction, loadSampleListSuccessAction, createSampleAction } from './sample.actions';
 import { catchError, from, map, of, switchMap, withLatestFrom } from 'rxjs';
-import { sampleSelector } from './sample.selectors';
+import { sampleListSelector } from './sample.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -18,24 +18,24 @@ export class SampleEffects {
     private _sampleService: SampleService,
   ) { }
 
-  loadSampleEffect = createEffect(() => 
+  loadSampleListEffect = createEffect(() => 
     this._actions.pipe(
       ofType(loadSampleListAction),
       switchMap(() => 
-        from(this._sampleService.loadSample()).pipe(
-          map((res) => loadSampleListSuccessAction({ sample: res })),
+        from(this._sampleService.loadSampleList()).pipe(
+          map((res) => loadSampleListSuccessAction({ sampleList: res })),
           catchError((error) => of(loadSampleListFailureAction({ error: error }))),
         ),
       ),
     )
   );
 
-  saveSampleEffect = createEffect(() => 
+  saveSampleListEffect = createEffect(() => 
     this._actions.pipe(
       ofType(createSampleAction),
-      withLatestFrom(this._store.select(sampleSelector)),
+      withLatestFrom(this._store.select(sampleListSelector)),
       switchMap(([action, sample]) => 
-        from(this._sampleService.saveSample(sample)),
+        from(this._sampleService.saveSampleList(sample)),
       ),
     ),
     { dispatch: false },

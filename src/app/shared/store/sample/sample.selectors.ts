@@ -3,7 +3,7 @@ import { AppState } from "..";
 import { SampleState } from "./sample.reducer";
 
 const _sampleState = (appState: AppState) => appState.sampleState;
-export const sampleSelector = createSelector(
+export const sampleListSelector = createSelector(
   _sampleState,
-  (sampleState: SampleState) => sampleState?.sample,
+  (sampleState: SampleState) => sampleState?.sampleList,
 );

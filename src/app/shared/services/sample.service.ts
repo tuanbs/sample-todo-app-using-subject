@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Sample } from '../models/sample.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +9,14 @@ export class SampleService {
 
   constructor() { }
 
-  loadSample(): Observable<number> {
-    return new Observable((observer) => {
-      const sample = 0;
-      observer.next(sample);
+  loadSampleList(): Observable<Sample[]> {
+    return new Observable<Sample[]>((observer) => {
+      let sampleList: Sample[] = [];
+      observer.next(sampleList);
     });
   }
 
-  saveSample(sample: number): Observable<void> {
+  saveSampleList(sampleList: Sample[]): Observable<void> {
     return new Observable((observer) => {
       observer.next();
     });
