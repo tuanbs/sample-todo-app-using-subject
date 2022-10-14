@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { SampleService } from 'src/app/shared/services/sample.service';
 import { AppState } from 'src/app/shared/store';
-import { loadSampleAction, loadSampleFailureAction, loadSampleSuccessAction, sampleAction } from './sample.actions';
+import { loadSampleListAction, loadSampleListFailureAction, loadSampleListSuccessAction, createSampleAction } from './sample.actions';
 import { catchError, from, map, of, switchMap, withLatestFrom } from 'rxjs';
 import { sampleSelector } from './sample.selectors';
 
@@ -20,11 +20,11 @@ export class SampleEffects {
 
   loadSampleEffect = createEffect(() => 
     this._actions.pipe(
-      ofType(loadSampleAction),
+      ofType(loadSampleListAction),
       switchMap(() => 
         from(this._sampleService.loadSample()).pipe(
-          map((res) => loadSampleSuccessAction({ sample: res })),
-          catchError((error) => of(loadSampleFailureAction({ error: error }))),
+          map((res) => loadSampleListSuccessAction({ sample: res })),
+          catchError((error) => of(loadSampleListFailureAction({ error: error }))),
         ),
       ),
     )
@@ -32,7 +32,7 @@ export class SampleEffects {
 
   saveSampleEffect = createEffect(() => 
     this._actions.pipe(
-      ofType(sampleAction),
+      ofType(createSampleAction),
       withLatestFrom(this._store.select(sampleSelector)),
       switchMap(([action, sample]) => 
         from(this._sampleService.saveSample(sample)),

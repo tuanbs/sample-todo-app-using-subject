@@ -2,14 +2,14 @@ import { createAction, props } from "@ngrx/store";
 
 const _componentName = `Sample Component`;
 
-export const loadSampleAction = createAction(`[${_componentName}] loadSampleAction.`);
-export const loadSampleSuccessAction = createAction(
-  `[${_componentName}] loadSampleSuccessAction.`,
+export const loadSampleListAction = createAction(`[${_componentName}] loadSampleListAction.`);
+export const loadSampleListSuccessAction = createAction(
+  `[${_componentName}] loadSampleListSuccessAction.`,
   props<{ sample: number }>(),
 );
-export const loadSampleFailureAction = createAction(
-  `[${_componentName}] loadSampleFailureAction.`,
+export const loadSampleListFailureAction = createAction(
+  `[${_componentName}] loadSampleListFailureAction.`,
   props<{ error: string | null }>(),
 );
 
-export const sampleAction = createAction(`[${_componentName}] sampleAction.`);
+export const createSampleAction = createAction(`[${_componentName}] createSampleAction.`);
