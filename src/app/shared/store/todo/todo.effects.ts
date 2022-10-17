@@ -21,12 +21,12 @@ export class TodoEffects {
   loadTodoListEffect = createEffect(() => 
     this._actions.pipe(
       ofType(loadTodoListAction),
-      switchMap(() => 
-        from(this._myTodoService.loadTodoList()).pipe(
+      switchMap(() => {
+        return this._myTodoService.loadTodoList().pipe(
           map((res) => loadTodoListSuccessAction({ todoList: res })),
           catchError((error) => of(loadTodoListFailureAction({ error: error }))),
-        ),
-      ),
+        );
+      }),
     )
   );
 
@@ -35,7 +35,7 @@ export class TodoEffects {
       ofType(createTodoAction, deleteTodoAction),
       withLatestFrom(this._store.select(todoListSelector)),
       switchMap(([action, todoList]) => {
-        return from(this._myTodoService.saveTodoList(todoList));
+        return this._myTodoService.saveTodoList(todoList);
       },),
     ),
     { dispatch: false },

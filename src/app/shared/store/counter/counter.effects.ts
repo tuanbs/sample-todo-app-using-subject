@@ -23,8 +23,8 @@ export class CounterEffects {
   loadCounterEffect = createEffect(() => 
     this._actions.pipe(
       ofType(loadCounterAction),
-      switchMap(() => 
-        from(this._counterService.loadCounter()).pipe(
+      switchMap(() => {
+        return this._counterService.loadCounter().pipe(
           map((res) => {
             console.info(`loadCounterSuccessAction is calling. res is: ${res}`);
             return loadCounterSuccessAction({ counter: res });
@@ -33,8 +33,19 @@ export class CounterEffects {
             console.info(`loadCounterFailureAction is calling. error is: ${error}`);
             return of(loadCounterFailureAction({ error: error }))
           }),
-        ),
-      ),
+        );
+
+        // return from(this._counterService.loadCounter()).pipe(
+        //   map((res) => {
+        //     console.info(`loadCounterSuccessAction is calling. res is: ${res}`);
+        //     return loadCounterSuccessAction({ counter: res });
+        //   }),
+        //   catchError((error) => {
+        //     console.info(`loadCounterFailureAction is calling. error is: ${error}`);
+        //     return of(loadCounterFailureAction({ error: error }))
+        //   }),
+        // );
+      }),
     )
   );
 
@@ -42,9 +53,11 @@ export class CounterEffects {
     this._actions.pipe(
       ofType(incrementCounterAction, decrementCounterAction, resetCounterAction),
       withLatestFrom(this._store.select(counterSelector)),
-      switchMap(([action, counter]) => 
-        from(this._counterService.saveCounter(counter)),
-      ),
+      switchMap(([action, counter]) => {
+        return this._counterService.saveCounter(counter);
+        
+        // return from(this._counterService.saveCounter(counter));
+      }),
     ),
     { dispatch: false },
   );
