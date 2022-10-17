@@ -13,19 +13,19 @@ export class TodoService {
 
   constructor() { }
 
-  async loadTodos() {
+  private async _loadTodos() {
     const todos: Todo[] = localStorage.getItem(AppConstants.localTodosDbName) == null ? [] : JSON.parse(localStorage.getItem(AppConstants.localTodosDbName)!);
     
     this._todos$.next(todos);
   }
 
-  async saveTodos() {
+  private async _saveTodos() {
     return localStorage?.setItem(AppConstants.localTodosDbName, JSON.stringify(this._todos$.value));
   }
 
   getTodos(): Observable<Todo[]> {
     if (!this._loaded) {
-      this.loadTodos();
+      this._loadTodos();
       this._loaded = true;
     }
 
@@ -38,12 +38,12 @@ export class TodoService {
       { id: Date.now().toString(), content: content },
     ]);
 
-    this.saveTodos();
+    this._saveTodos();
   }
 
   removeTodo(id?: string) {
     this._todos$.next(this._todos$.value.filter((item: Todo) => item.id != id));
 
-    this.saveTodos();
+    this._saveTodos();
   }
 }

@@ -23,8 +23,12 @@ export class SampleEffects {
       ofType(loadSampleListAction),
       switchMap(() => 
         from(this._sampleService.loadSampleList()).pipe(
-          map((res) => loadSampleListSuccessAction({ sampleList: res })),
-          catchError((error) => of(loadSampleListFailureAction({ error: error }))),
+          map((res) => {
+            return loadSampleListSuccessAction({ sampleList: res });
+          }),
+          catchError((error) => {
+            return of(loadSampleListFailureAction({ error: error }));
+          }),
         ),
       ),
     )
@@ -34,9 +38,9 @@ export class SampleEffects {
     this._actions.pipe(
       ofType(createSampleAction),
       withLatestFrom(this._store.select(sampleListSelector)),
-      switchMap(([action, sample]) => 
-        from(this._sampleService.saveSampleList(sample)),
-      ),
+      switchMap(([action, sample]) => {
+        return from(this._sampleService.saveSampleList(sample));
+      },),
     ),
     { dispatch: false },
   );
